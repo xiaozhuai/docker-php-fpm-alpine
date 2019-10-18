@@ -24,8 +24,10 @@ RUN apk --no-cache add \
         php7-xmlwriter \
         php7-pdo \
         php7-pdo_mysql \
+        php7-pdo_pgsql \
         php7-pdo_sqlite \
         php7-mysqlnd \
+        php7-pgsql \
         php7-apcu \
         php7-redis \
         php7-memcached \
