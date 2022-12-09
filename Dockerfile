@@ -38,7 +38,6 @@ RUN apk --no-cache add \
         php81-pecl-uuid \
         php81-pecl-zstd \
         php81-pecl-ssh2 \
-        php81-pecl-imagick \
         php81-pecl-yaml \
         php81-pecl-apcu \
         php81-pecl-redis \
