@@ -1,0 +1,40 @@
+name: build-docker-image
+
+on:
+    workflow_dispatch:
+    push:
+        branches: [ master ]
+    pull_request:
+        branches: [ master ]
+    schedule:
+        -   cron: '0 16 * * *'
+
+jobs:
+    docker:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Set up QEMU
+                uses: docker/setup-qemu-action@v2
+            -   name: Set up Docker Buildx
+                uses: docker/setup-buildx-action@v2
+            -   name: Login to Docker Hub
+                uses: docker/login-action@v2
+                with:
+                    username: ${{ secrets.DOCKERHUB_USERNAME }}
+                    password: ${{ secrets.DOCKERHUB_TOKEN }}
+            -   name: Build and push
+                uses: docker/build-push-action@v3
+                with:
+                    platforms: linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6
+                    push: ${{ github.event_name != 'pull_request' }}
+                    tags: xiaozhuai/php-fpm-alpine:latest
+            -   uses: actions/checkout@v3
+                if: ${{ github.event_name != 'pull_request' }}
+            -   name: Docker Hub Description
+                uses: peter-evans/dockerhub-description@v3
+                if: ${{ github.event_name != 'pull_request' }}
+                with:
+                    username: ${{ secrets.DOCKERHUB_USERNAME }}
+                    password: ${{ secrets.DOCKERHUB_TOKEN }}
+                    repository: xiaozhuai/php-fpm-alpine
+                    short-description: ${{ github.event.repository.description }}
