@@ -47,7 +47,7 @@ RUN apk --no-cache add \
     && rm /etc/php81/conf.d/*xdebug*.ini \
     && sed -i "s/;*error_log = .*$/error_log = \/dev\/stderr/" /etc/php81/php-fpm.conf \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && apk --no-cache --allow-untrusted --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ add gnu-libiconv
+    && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.12/community/ --allow-untrusted gnu-libiconv=1.15-r2
 
 #    && sed -i "s/user = nobody/user = root/" /etc/php81/php-fpm.d/www.conf \
 #    && sed -i "s/group = nobody/group = root/" /etc/php81/php-fpm.d/www.conf \
