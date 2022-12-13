@@ -44,10 +44,11 @@ RUN apk --no-cache add \
         php81-pecl-memcached \
         php81-pecl-xdebug \
         curl \
+    && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.12/community/ --allow-untrusted gnu-libiconv=1.15-r2 \
+    && mkdir -p /var/run/php \
     && rm /etc/php81/conf.d/*xdebug*.ini \
     && sed -i "s/;*error_log = .*$/error_log = \/dev\/stderr/" /etc/php81/php-fpm.conf \
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.12/community/ --allow-untrusted gnu-libiconv=1.15-r2
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 #    && sed -i "s/user = nobody/user = root/" /etc/php81/php-fpm.d/www.conf \
 #    && sed -i "s/group = nobody/group = root/" /etc/php81/php-fpm.d/www.conf \
