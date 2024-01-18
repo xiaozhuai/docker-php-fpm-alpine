@@ -20,8 +20,8 @@ services:
         volumes:
             - phpsocket:/var/run/php
             - ./code:/code
-            - ./zzz_www.conf:/etc/php81/php-fpm.d/zzz_www.conf
-            - ./zzz_custom.ini:/etc/php81/conf.d/zzz_custom.ini
+            - ./zzz_www.conf:/etc/php/php-fpm.d/zzz_www.conf
+            - ./zzz_custom.ini:/etc/php/conf.d/zzz_custom.ini
 
 volumes:
     phpsocket:
