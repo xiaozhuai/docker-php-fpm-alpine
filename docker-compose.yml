@@ -8,7 +8,7 @@ services:
             - ./code:/code
             - ./site.conf:/etc/nginx/http.d/default.conf
         ports:
-            - 5000:80
+            - 3000:80
         depends_on:
             - php-fpm
     php-fpm:

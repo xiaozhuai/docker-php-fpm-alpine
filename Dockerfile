@@ -52,8 +52,8 @@ RUN apk --no-cache add \
     && ln -s /usr/lib/php83 /usr/lib/php \
     && ln -s /usr/include/php83 /usr/include/php \
     && ln -s /etc/php83 /etc/php \
-    && ln -s /usr/bin/php83 /usr/bin/php \
-    && ln -s /usr/sbin/php-fpm83 /usr/sbin/php-fpm \
+    && ln -sf /usr/bin/php83 /usr/bin/php \
+    && ln -sf /usr/sbin/php-fpm83 /usr/sbin/php-fpm \
     && rm /etc/php/conf.d/*xdebug*.ini \
     && sed -i "s/;*error_log = .*$/error_log = \/dev\/stderr/" /etc/php/php-fpm.conf \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
