@@ -61,7 +61,7 @@ RUN apk --no-cache add \
 #    && sed -i "s/user = nobody/user = root/" /etc/php/php-fpm.d/www.conf \
 #    && sed -i "s/group = nobody/group = root/" /etc/php/php-fpm.d/www.conf \
 
-ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
+ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
 
 ENTRYPOINT ["php-fpm", "-F", "-R"]
